@@ -1,28 +1,14 @@
 
-ORDER = ("a".."z").to_a()
-
 def cypher (string, shift = 1)
 
-  encoded = string.chars()
-
-  encoded.each_with_index() do |value, index|
-
-    original_index = ORDER.index(value.downcase)
-
-    if original_index
-      shifted_index = (original_index + shift)  % ORDER.length
-      encoded[index] = ORDER[shifted_index]
-      if value == value.upcase
-        encoded[index] = encoded[index].upcase
-      end
-    else
-      encoded[index] = value
-    end
+  string.chars.map do |letter|
+  if letter =~ /[a-zA-Z]/
+    (letter.ord + shift).chr
+  else
+    letter
   end
-
   
-  
-  return encoded.join()
+end.join
   
 end
 
