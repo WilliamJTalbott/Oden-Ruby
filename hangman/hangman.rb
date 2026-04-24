@@ -195,6 +195,8 @@ class Game
 
   def end_game(is_victory, save)
 
+    save.delete_data()
+
     if is_victory
       system("clear")
       puts HANGMAN[7]
@@ -202,7 +204,7 @@ class Game
       puts "You Win!"
     else
       draw_scene(save)
-      puts "You Lose"
+      puts "You Lose... The word was \"#{save.word.join}\""
     end
   end
 
@@ -224,9 +226,7 @@ class Save
     @guess =  Array.new(@word.length, "_")
     @guesses_left = 6
 
-    if File.exist?(SAVE_FILE)
-      delete_data()
-    end
+    delete_data()
 
   end
 
@@ -242,7 +242,9 @@ class Save
   end
 
   def delete_data()
-    File.delete(SAVE_FILE)
+    if File.exist?(SAVE_FILE)
+      File.delete(SAVE_FILE)
+    end
   end
 
 end
