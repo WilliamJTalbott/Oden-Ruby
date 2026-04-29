@@ -115,13 +115,3 @@ class LinkedList
   end
   
 end
-
-list = LinkedList.new()
-
-list.prepend(1)
-list.prepend(2)
-list.prepend(3)
-list.prepend(4)
-list.prepend(5)
-
-puts list.to_s
