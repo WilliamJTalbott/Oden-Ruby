@@ -45,6 +45,8 @@ class LinkedList
       count += 1
       current = current.next_node
     end
+
+    count
   end
 
   def head
@@ -112,6 +114,22 @@ class LinkedList
 
     return string + "nil"
 
+  end
+
+  def remove_at(index)
+    return nil if @head.nil?
+
+    if index == 0
+      return pop()
+    end
+
+    previous = at(index - 1)
+    return nil if previous.nil? || previous.next_node.nil?
+
+    removed = previous.next_node
+    previous.next_node = removed.next_node
+
+    removed.value
   end
   
 end
