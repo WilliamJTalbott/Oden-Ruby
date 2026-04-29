@@ -32,7 +32,7 @@ def merge_loop(front, back)
   result = []
 
   until front.empty? or back.empty?
-    if front[0] <= right[0]
+    if front[0] <= back[0]
       result << front.shift
     else
       result << back.shift
