@@ -12,7 +12,7 @@ class Knight
     @from_target = { target => nil }
   end
 
-  def is_path?()
+  def get_path()
     until @start_queue.empty? or @target_queue.empty?
       return result if (result = search(@start_queue, @from_start, @from_target))
       return result if (result = search(@target_queue, @from_target, @from_start))
@@ -43,8 +43,7 @@ class Knight
         this_side[move] = pos
 
         if other_side.key?(move)
-          assemble_path(move)
-          return true
+          return assemble_path(move)
         else
           next_queue << move
         end
@@ -55,7 +54,7 @@ class Knight
     end
 
     queue.replace(next_queue)
-    false
+    nil
 
   end
 
@@ -69,17 +68,13 @@ class Knight
   end
 
   def assemble_path(move)
-    
     start_path = walk_path(@from_start, move).reverse()
     end_path = walk_path(@from_target, move)
 
-    path = start_path + end_path[1..]
-
-    # [0,0,0 <- 0 -> 0,0,0]
-    print(path)
+    start_path + end_path[1..]
   end
 
 end
 
 knight = Knight.new([7,7],[0,0])
-knight.is_path?
+print(knight.get_path())
